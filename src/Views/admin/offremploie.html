@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offres d'Emploi - CareerLink</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assests/css/dashbord.css">
+    <link rel="stylesheet" href="../assests/css/offremploie.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar" class="p-3">
+        <h3 class="text-white mb-4 px-2">CareerLink</h3>
+        <nav class="nav flex-column">
+            <a href="statistique.html" class="nav-link">
+                <i class="bi bi-graph-up"></i> Statistiques
+            </a>
+            <a href="offremploie.html" class="nav-link active">
+                <i class="bi bi-briefcase"></i> Offres d'emploi
+            </a>
+            <a href="categories.html" class="nav-link">
+                <i class="bi bi-grid"></i> Catégories
+            </a>
+            <a href="tags.html" class="nav-link">
+                <i class="bi bi-tags"></i> Tags
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content">
+        <!-- Header -->
+        <div class="header mb-4">
+            <h1 class="fw-bold">Offres d'emploi</h1>
+            <p>Gérez les offres d'emploi publiées</p>
+        </div>
+
+        <!-- Search and Filters -->
+        <div class="container">
+            <div class="search-card">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text border-0 bg-light">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input type="text" id="searchInput" class="form-control border-0 bg-light" placeholder="Rechercher une offre...">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <select id="categoryFilter" class="form-select bg-light border-0">
+                            <option value="">Toutes les catégories</option>
+                            <option value="Technologie">Technologie</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Finance">Finance</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select id="tagFilter" class="form-select bg-light border-0">
+                            <option value="">Tous les tags</option>
+                            <option value="PHP">PHP</option>
+                            <option value="JavaScript">JavaScript</option>
+                            <option value="Marketing Digital">Marketing Digital</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jobs List -->
+            <div id="jobsList">
+                <!-- Job Card 1 -->
+                <div class="job-card">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex gap-3">
+                            <div class="company-icon">
+                                <i class="bi bi-building fs-4"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">Développeur Full Stack</h5>
+                                <p class="text-muted mb-2">TechCorp</p>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="category-badge">Technologie</span>
+                                    <span class="tag-badge">PHP</span>
+                                    <span class="tag-badge">JavaScript</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column align-items-end">
+                            <button class="archive-btn" title="Archiver cette offre">
+                                <i class="bi bi-archive fs-5"></i>
+                            </button>
+                            <small class="text-muted mt-2">Publié le 01/01/2025</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Card 2 -->
+                <div class="job-card">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex gap-3">
+                            <div class="company-icon">
+                                <i class="bi bi-building fs-4"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">Chef de Projet Marketing</h5>
+                                <p class="text-muted mb-2">MarketPro</p>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="category-badge">Marketing</span>
+                                    <span class="tag-badge">Marketing Digital</span>
+                                    <span class="tag-badge">SEO</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column align-items-end">
+                            <button class="archive-btn" title="Archiver cette offre">
+                                <i class="bi bi-archive fs-5"></i>
+                            </button>
+                            <small class="text-muted mt-2">Publié le 02/01/2025</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- js -->
+    <script src="../assests/js/dashbord.js"></script>
+    <script src="../assests/js/offremploie.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+:root {
+    --primary-color: #2C3E50;
+    --secondary-color: #3498DB;
+    --accent-color: #E74C3C;
+    --light-gray: #F8F9FA;
+}
+
+body {
+    background-color: var(--light-gray);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+}
+
+#sidebar {
+    background: var(--primary-color);
+    min-height: 100vh;
+    color: white;
+    position: fixed;
+    width: 250px;
+}
+
+#content {
+    margin-left: 250px;
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.8);
+    padding: 0.8rem 1rem;
+    border-radius: 5px;
+    margin: 0.2rem 0;
+    transition: all 0.3s;
+}
+
+.nav-link:hover, .nav-link.active {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.nav-link i {
+    margin-right: 10px;
+}
+
+.header {
+    background: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%);
+    padding: 2rem;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
