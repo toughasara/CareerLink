@@ -1,3 +1,6 @@
 /vendor/
+<<<<<<< HEAD
 composer.lock
 composer.json
+=======
+>>>>>>> 8f176fbb454097af1f873e445c0801296336e66b

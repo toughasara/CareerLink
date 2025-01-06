@@ -1,6 +1,7 @@
 CREATE DATABASE CareerLink;
 USE CareerLink;
 
+<<<<<<< HEAD
 CREATE TABLE Role (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titre ENUM('Administrateur', 'Recruteur', 'Candidat')
@@ -12,12 +13,23 @@ CREATE TABLE Utilisateur (
     password VARCHAR(255),
     role_id INT,
     FOREIGN KEY (role_id) REFERENCES Role(id)
+=======
+CREATE TABLE Utilisateur (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50),
+    prenom VARCHAR(50),
+    email VARCHAR(50),
+    rolee ENUM('Administrateur', 'Recruteur', 'Candidat')
+>>>>>>> 8f176fbb454097af1f873e445c0801296336e66b
 );
 
 CREATE TABLE Recruteur (
     id INT AUTO_INCREMENT PRIMARY KEY,
     utilisateur_id INT,
+<<<<<<< HEAD
     nom_entreprise VARCHAR(50),
+=======
+>>>>>>> 8f176fbb454097af1f873e445c0801296336e66b
     pay VARCHAR(50),
     ville VARCHAR(50),
     FOREIGN KEY (utilisateur_id) REFERENCES Utilisateur(id)
@@ -26,9 +38,14 @@ CREATE TABLE Recruteur (
 CREATE TABLE Candidat (
     id INT AUTO_INCREMENT PRIMARY KEY,
     utilisateur_id INT,
+<<<<<<< HEAD
     nom VARCHAR(50),
     prenom VARCHAR(50),
     adress VARCHAR(100),
+=======
+    adress VARCHAR(100),
+    domaine VARCHAR(100),
+>>>>>>> 8f176fbb454097af1f873e445c0801296336e66b
     linkdin VARCHAR(100),
     FOREIGN KEY (utilisateur_id) REFERENCES Utilisateur(id)
 );
@@ -54,6 +71,10 @@ CREATE TABLE Emploi (
     FOREIGN KEY (categorie_id) REFERENCES Categorie(id)
 );
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8f176fbb454097af1f873e445c0801296336e66b
 CREATE TABLE Tag (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(50),
