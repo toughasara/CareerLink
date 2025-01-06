@@ -1,0 +1,46 @@
+.job-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+.job-card:hover {
+    transform: translateY(-2px);
+}
+
+.tag {
+    background-color: var(--light-gray);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.job-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.publication-date {
+    color: #2ecc71;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: rgba(46, 204, 113, 0.1);
+}
+
+@media (max-width: 768px) {
+    .menu-buttons .row > div {
+        margin-bottom: 1rem;
+    }
+
+    .menu-btn {
+        width: 100%;
+    }
+}
