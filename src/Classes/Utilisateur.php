@@ -4,10 +4,10 @@ namespace App\Classes;
 
 
 class Utilisateur {
-    public $id;
-    public $email;
-    public $password;
-    public $role;
+    private $id;
+    private $email;
+    private $password;
+    private $role;
 
     public function __construct($id, $email,  $password, $role) {
             $this->id = $id;

@@ -77,6 +77,8 @@ if(isset($_POST["submit"]))
                     </label>
                 </div>
 
+                <input hidden type="password" class="form-control" name="submit" value="submit" placeholder="Mot de passe">
+                
                 <button type="submit" href class="btn btn-primary">Créer mon compte</button>
             </form>
 

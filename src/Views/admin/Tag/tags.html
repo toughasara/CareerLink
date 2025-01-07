@@ -6,8 +6,8 @@
     <title>Tags - CareerLink</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assests/css/admin/dashbord.css">
-    <link rel="stylesheet" href="../assests/css/admin/tags.css">
+    <link rel="stylesheet" href="../../assests/css/admin/dashbord.css">
+    <link rel="stylesheet" href="../../assests/css/admin/tags.css">
 </head>
 <body>
     <!-- Sidebar -->
@@ -20,10 +20,10 @@
             <a href="offremploie.php" class="nav-link">
                 <i class="bi bi-briefcase"></i> Offres d'emploi
             </a>
-            <a href="categories.php" class="nav-link">
+            <a href="Categorie/categories.php" class="nav-link">
                 <i class="bi bi-grid"></i> Catégories
             </a>
-            <a href="tags.php" class="nav-link active">
+            <a href="Tag/tags.php" class="nav-link active">
                 <i class="bi bi-tags"></i> Tags
             </a>
         </nav>
@@ -47,9 +47,9 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h2>Liste des tags</h2>
-                        <button class="add-btn" data-bs-toggle="modal" data-bs-target="#addTagModal">
-                            <i class="bi bi-plus-lg me-2"></i>Ajouter un tag
-                        </button>
+                        <a href="update.html" class="add-btn">
+                            <i class="bi bi-plus-lg me-2"></i> Ajouter un tag
+                        </a>
                     </div>
                     <div class="table-responsive">
                         <table class="table">
@@ -65,69 +65,29 @@
                                     <td>PHP</td>
                                     <td>28</td>
                                     <td>
-                                        <button class="action-btn edit-btn me-2" title="Modifier">
-                                            <i class="bi bi-pencil"></i>
-                                        </button>
-                                        <button class="action-btn delete-btn" title="Supprimer">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
+                                        <a href="update.html" class="action-btn edit-btn me-2" title="Modifier"><i class="bi bi-pencil"></i></a>
+                                        <a href="update.html" class="action-btn delete-btn" title="Supprimer"><i class="bi bi-trash"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>JavaScript</td>
                                     <td>35</td>
                                     <td>
-                                        <button class="action-btn edit-btn me-2" title="Modifier">
-                                            <i class="bi bi-pencil"></i>
-                                        </button>
-                                        <button class="action-btn delete-btn" title="Supprimer">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
+                                        <a href="update.html" class="action-btn edit-btn me-2" title="Modifier"><i class="bi bi-pencil"></i></a>
+                                        <a href="update.html" class="action-btn delete-btn" title="Supprimer"><i class="bi bi-trash"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Marketing Digital</td>
                                     <td>20</td>
                                     <td>
-                                        <button class="action-btn edit-btn me-2" title="Modifier">
-                                            <i class="bi bi-pencil"></i>
-                                        </button>
-                                        <button class="action-btn delete-btn" title="Supprimer">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
+                                        <a href="update.html" class="action-btn edit-btn me-2" title="Modifier"><i class="bi bi-pencil"></i></a>
+                                        <a href="update.html" class="action-btn delete-btn" title="Supprimer"><i class="bi bi-trash"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add Tag Modal -->
-    <div class="modal fade" id="addTagModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Ajouter un tag</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="addTagForm">
-                        <div class="mb-3">
-                            <label for="tagName" class="form-label">Nom du tag</label>
-                            <input type="text" class="form-control" id="tagName" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="tagDescription" class="form-label">Description</label>
-                            <textarea class="form-control" id="tagDescription" rows="3"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-primary">Ajouter</button>
                 </div>
             </div>
         </div>

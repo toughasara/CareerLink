@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers\Auth;
 
 use App\Classes\User;
@@ -7,6 +8,12 @@ use App\Models\UserModel;
 use PDO;
 
 class AuthController{
+
+    private UserModel $userModel;
+
+    public function __construct()   {
+        $this->userModel = new UserModel();
+    }
 
     public function Registre_recruteur($nom_entreprise, $pay, $ville, $email, $password){
         $userModel = new UserModel();
@@ -19,14 +26,17 @@ class AuthController{
     }
 
     public function login($email, $password){
+
         $userModel = new UserModel();
         $user = $userModel->findUserByEmailAndPassword($email, $password);
+
         if($user == null){
             echo "user not found please check ...";
         }
         else{
-            if($user->getRole()->getTitle() == "admin"){
+            if($user->getRole()->getTitle() == "Administrateur"){
                 header("Location:../admin/statistique.php");
+                exit();
             }
             else if($user->getRole()->getTitle() == "candidate"){
                 header("Location:../candidate/index.php");

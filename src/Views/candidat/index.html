@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offres d'Emploi - CareerLink</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        .dashboard-header {
+            background-color: #f8f9fa;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .menu-buttons {
+            margin-bottom: 2rem;
+        }
+
+        .menu-btn {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .menu-btn:hover, .menu-btn.active {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+        .job-card {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .job-card:hover {
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .skill-tag {
+            background-color: #e9ecef;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            margin-right: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .company-tag {
+            background-color: #0d6efd;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+        }
+
+        .apply-btn {
+            background-color: #198754;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .apply-btn:hover {
+            background-color: #146c43;
+        }
+
+        .already-applied {
+            background-color: #6c757d;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Dashboard Header -->
+    <div class="dashboard-header text-center">
+        <div class="container">
+            <h1>Offres d'Emploi</h1>
+            <p>Trouvez l'opportunité qui vous correspond</p>
+        </div>
+    </div>
+
+    <!-- Menu Buttons -->
+    <div class="container">
+        <div class="menu-buttons">
+            <div class="row g-3">
+                <div class="col-12 col-md-4">
+                    <button class="menu-btn active" id="btn-emplois" onclick="window.location.href='index.php'">
+                        <i class="bi bi-briefcase"></i>
+                        Offres d'emploi
+                    </button>
+                </div>
+                <div class="col-12 col-md-4">
+                    <button class="menu-btn" id="btn-mes-candidatures" onclick="window.location.href='mes-candidatures.php'">
+                        <i class="bi bi-file-earmark-text"></i>
+                        Mes candidatures
+                    </button>
+                </div>
+                <div class="col-12 col-md-4">
+                    <button class="menu-btn" id="btn-profil" onclick="window.location.href='profil.php'">
+                        <i class="bi bi-person"></i>
+                        Mon profil
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filtres et recherche -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Rechercher un emploi..." id="recherche-emploi">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <select class="form-select" id="filtre-categorie">
+                    <option value="">Toutes les catégories</option>
+                    <option value="Technologie">Technologie</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Finance">Finance</option>
+                    <option value="RH">Ressources Humaines</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <select class="form-select" id="filtre-type">
+                    <option value="">Tous les types de contrat</option>
+                    <option value="CDI">CDI</option>
+                    <option value="CDD">CDD</option>
+                    <option value="Stage">Stage</option>
+                    <option value="Freelance">Freelance</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Liste des emplois -->
+        <div id="liste-emplois">
+            <!-- Emploi 1 -->
+            <div class="job-card">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h3>Développeur Full Stack</h3>
+                        <p class="text-muted mb-2">TechCorp - Paris</p>
+                    </div>
+                    <span class="company-tag">TechCorp</span>
+                </div>
+                <div class="mb-3">
+                    <span class="publication-date">
+                        <i class="bi bi-calendar-event me-2"></i>Publié le 15/01/2024
+                    </span>
+                    <span class="text-muted ms-3">CDI</span>
+                </div>
+                <div class="mb-3">
+                    <span class="skill-tag">PHP</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">React</span>
+                </div>
+                <button class="apply-btn" onclick="postuler(1)">
+                    <i class="bi bi-send me-2"></i>Postuler
+                </button>
+            </div>
+
+            <!-- Emploi 2 -->
+            <div class="job-card">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h3>Chef de Projet Marketing Digital</h3>
+                        <p class="text-muted mb-2">MarketPro - Lyon</p>
+                    </div>
+                    <span class="company-tag">MarketPro</span>
+                </div>
+                <div class="mb-3">
+                    <span class="publication-date">
+                        <i class="bi bi-calendar-event me-2"></i>Publié le 10/01/2024
+                    </span>
+                    <span class="text-muted ms-3">CDI</span>
+                </div>
+                <div class="mb-3">
+                    <span class="skill-tag">Marketing Digital</span>
+                    <span class="skill-tag">SEO</span>
+                    <span class="skill-tag">Analytics</span>
+                </div>
+                <button class="apply-btn already-applied" disabled>
+                    <i class="bi bi-check-circle me-2"></i>Déjà postulé
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Détail Emploi -->
+    <div class="modal fade" id="modalDetailEmploi" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Détail de l'offre</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="modal-contenu">
+                    <!-- Le contenu sera injecté dynamiquement -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary" onclick="postuler(currentJobId)">Postuler</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Variable pour stocker l'ID de l'offre courante
+        let currentJobId = null;
+
+        // Fonction pour postuler à une offre
+        function postuler(jobId) {
+            // À implémenter : logique pour soumettre la candidature
+            alert('Candidature envoyée pour l\'offre ' + jobId);
+            // Actualiser le bouton après postulation
+            const btn = document.querySelector(`[onclick="postuler(${jobId})"]`);
+            if (btn) {
+                btn.classList.add('already-applied');
+                btn.disabled = true;
+                btn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Déjà postulé';
+            }
+        }
+
+        // Fonction pour afficher les détails d'une offre
+        function afficherDetail(jobId) {
+            currentJobId = jobId;
+            // À implémenter : récupérer et afficher les détails de l'offre
+            const modal = new bootstrap.Modal(document.getElementById('modalDetailEmploi'));
+            modal.show();
+        }
+    </script>
+</body>
+</html>

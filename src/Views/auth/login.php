@@ -7,14 +7,17 @@ use App\Controllers\Auth\AuthController;
 
 if(isset($_POST["submit"]))
 {
+
     if(empty($_POST["email"]) && empty($_POST["password"]))
     {
+        
         echo "email or password is empty";
     }
     else{
         $email = $_POST["email"];
         $password = $_POST["password"];
 
+        
         $authController = new AuthController();
         $authController->login($email, $password);
 
@@ -52,6 +55,8 @@ if(isset($_POST["submit"]))
                     </div>
                     <a href="#" class="forgot-password">Mot de passe oublié ?</a>
                 </div>
+
+                <input hidden type="password" class="form-control" name="submit" value="submit" placeholder="Mot de passe">
 
                 <button type="submit" class="btn btn-primary">Se connecter</button>
             </form>

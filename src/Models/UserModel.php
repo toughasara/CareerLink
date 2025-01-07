@@ -2,7 +2,7 @@
 namespace App\Models;
 
 use App\Classes\Role;
-use App\Classes\User;
+use App\Classes\Utilisateur;
 use App\Classes\Recruteur;
 use App\Config\Database;
 use PDO;
@@ -14,6 +14,7 @@ class UserModel{
         $db = new Database();
         $this->conn = $db->connection();
     }
+
 
     public function saveInfoOfCondidat($nom, $prenom, $email, $password, $adress, $linkdin) {        
         $queryUtilisateur = "INSERT INTO Utilisateur (email, password, role_id) 
@@ -114,7 +115,8 @@ class UserModel{
 
 
     public function findUserByEmailAndPassword($email, $password){
-        $query = "SELECT Utilisateur.id , Utilisateur.email , Utilisateur.password , Role.id as role_id , Role.title as `role`
+        session_start();
+        $query = "SELECT Utilisateur.id , Utilisateur.email , Utilisateur.password , Role.id as role_id , Role.titre as `role`
                 FROM Utilisateur 
                 join Role on Role.id = Utilisateur.role_id 
                 where Utilisateur.email = :email";
@@ -124,10 +126,16 @@ class UserModel{
         $stmt->execute();
         
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        // var_dump($row);
+        // exit();
         if(!$row || !password_verify($password, $row["password"])){
         return null;
         }
         else{
+            $_SESSION["id"] = $row["id"];
+            $_SESSION["role"] = $row["role"];
+
             $role = new Role($row["role_id"], $row["role"]);
             return new Utilisateur($row['id'],$row["email"],$row["password"],$role);
         }
