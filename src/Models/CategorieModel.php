@@ -20,7 +20,12 @@ class CategorieModel{
         $stmtselectCategorie->bindParam(':id', $id, \PDO::PARAM_INT);
         $stmtselectCategorie->execute();
         $categorie = $stmtselectCategorie->fetch(\PDO::FETCH_ASSOC);
-        return $categorie;
+        if ($categorie) {
+            $categorie = new Categorie($categorie['id'], $categorie['nom'], $categorie['description']);
+            return $categorie;
+        } else {
+            return null;
+        }
     }
 
     // get tout les categories
@@ -29,7 +34,13 @@ class CategorieModel{
         $stmtselectCategorie = $this->conn->prepare($queryFindCategorie);
         $stmtselectCategorie->execute();
         $categories = $stmtselectCategorie->fetchAll(\PDO::FETCH_ASSOC);
-        return $categories;
+
+        $category_objects = [];
+        foreach ($categories as $category) {
+            $category_objects [] = new Categorie($category['id'],$category['nom'],$category['description'] );
+        }
+
+        return $category_objects;
     }
 
     // savecategorie

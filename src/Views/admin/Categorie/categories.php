@@ -85,12 +85,12 @@
                             <?php if ($categories): ?>
                                     <?php foreach ($categories as $category): ?>
                                         <tr>
-                                        <input type="hidden" name="id" value="<?= $category['id'] ?>">
-                                            <?php echo '<td>' . $category['nom'] . '</td>' ?>
+                                        <input type="hidden" name="id" value="<?= $category->getId() ?>">
+                                            <?php echo '<td>' . $category->getNom(). '</td>' ?>
                                             <td>28</td>
                                             <td>
-                                                <a href="update.php?id=<?php echo $category['id']; ?>" class="action-btn edit-btn me-2" title="Modifier"><i class="bi bi-pencil"></i></a>
-                                                <a href="categories.php?id=<?php echo $category['id']; ?>" class="action-btn delete-btn" title="Supprimer"><i class="bi bi-trash"></i></a>
+                                                <a href="update.php?id=<?php echo $category->getId(); ?>" class="action-btn edit-btn me-2" title="Modifier"><i class="bi bi-pencil"></i></a>
+                                                <a href="categories.php?id=<?php echo $category->getId(); ?>" class="action-btn delete-btn" title="Supprimer"><i class="bi bi-trash"></i></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

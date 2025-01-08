@@ -85,12 +85,12 @@
                             <form id="addCategoryForm" action="" method="POST">
                                 <div class="mb-3">
                                     <label for="categoryName" class="form-label">Nom de la catégorie</label>
-                                    <input value="<?= $categorie['nom'] ?>" type="text" name="name" class="form-control" id="categoryName" required>
+                                    <input value="<?php echo $categorie->getNom(); ?>" type="text" name="name" class="form-control" id="categoryName" required>
                                     <input hidden value="submit" type="password" class="form-control" name="submit">
                                 </div>
                                 <div class="mb-3">
                                     <label for="categoryDescription" class="form-label">Description</label>
-                                    <textarea name="description" class="form-control" id="categoryDescription" rows="3"><?= $categorie['description'] ?></textarea>
+                                    <textarea name="description" class="form-control" id="categoryDescription" rows="3"><?php echo $categorie->getDescription(); ?></textarea>
                                 </div>
                                 <div class="modal-footer">
                                     <a href="categories.php" class="btn btn-secondary">Annuler</a>
