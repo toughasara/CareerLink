@@ -3,7 +3,7 @@
 require_once("../../../vendor/autoload.php");
 use App\Controllers\Auth\AuthController;
 
-
+$authController = new AuthController();
 
 if(isset($_POST["submit"]))
 {
@@ -19,8 +19,10 @@ if(isset($_POST["submit"]))
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        $authController = new AuthController();
         $authController->Registre_recruteur($nom_entreprise, $pay, $ville, $email, $password);
+
+        header("Location: login.php");
+        exit;
 
     }
 }
@@ -69,9 +71,9 @@ if(isset($_POST["submit"]))
                     </label>
                 </div>
 
-                <input hidden type="password" class="form-control" name="submit" value="submit" placeholder="Mot de passe">
+                <input hidden type="password" class="form-control" name="submit" value="submit">
 
-                <button type="submit" class="btn btn-primary">Créer mon compte</button>
+                <button type="submit" name="submit" class="btn btn-primary">Créer mon compte</button>
             </form>
 
             <div class="text-center mt-4">

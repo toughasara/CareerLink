@@ -27,31 +27,32 @@ class CategorieController{
         return $this->categorieModel->getAllCategories();
     }
 
-    // modification de categorie
     public function updateCategorie($category_id, $name , $description){
-        // var_dump($category_id);
-        // exit;
-        $id = $category_id;
-
-        $categorie = $admine->trouverCategorieParId($id);
-
-        if ($categorie !== null) {
-            $categorie->setNom($name);
-            $categorie->setDescription($description);
-            return true;
-        }
-        return false;
+        $categorie = new Categorie($category_id ,$name ,$description);
+        $this->categorieModel->updateCategorie($categorie);
     }
+
+    // modification de categorie
+    // public function updateCategorie($category_id, $name , $description){
+    //     // var_dump($category_id);
+    //     // exit;
+    //     $id = $category_id;
+
+    //     $categorie = $admine->trouverCategorieParId($id);
+
+    //     if ($categorie !== null) {
+    //         $categorie->setNom($name);
+    //         $categorie->setDescription($description);
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     public function trouvercategorie($category_id){
         $id = $category_id;
         return $this->categorieModel->trouvercategorie($id);
     }
 
-    public function deleteCategoryByd($category_id){
-        $this->categorieModel->dropCayegorie($category_id);
-        $_SESSION['success']['message'] = 'Deleted Successfully';
-    }
     // supprimer une categorie 
     public function deleteCategoryById($category_id){
         $id = $category_id;

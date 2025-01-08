@@ -14,16 +14,16 @@
     <div id="sidebar" class="p-3">
         <h3 class="text-white mb-4 px-2">CareerLink</h3>
         <nav class="nav flex-column">
-            <a href="statistique.php" class="nav-link">
+            <a href="../statistique.php" class="nav-link">
                 <i class="bi bi-graph-up"></i> Statistiques
             </a>
-            <a href="offremploie.php" class="nav-link">
+            <a href="../offremploie.php" class="nav-link">
                 <i class="bi bi-briefcase"></i> Offres d'emploi
             </a>
-            <a href="Categorie/categories.php" class="nav-link">
+            <a href="../Categorie/categories.php" class="nav-link">
                 <i class="bi bi-grid"></i> Catégories
             </a>
-            <a href="Tag/tags.php" class="nav-link active">
+            <a href="../Tag/tags.php" class="nav-link active">
                 <i class="bi bi-tags"></i> Tags
             </a>
         </nav>

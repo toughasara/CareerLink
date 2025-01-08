@@ -15,14 +15,13 @@ class UserModel{
         $this->conn = $db->connection();
     }
 
-
     public function saveInfoOfCondidat($nom, $prenom, $email, $password, $adress, $linkdin) {        
         $queryUtilisateur = "INSERT INTO Utilisateur (email, password, role_id) 
                             VALUES (:email, :password, :role_id)";
 
         $queryCandidat = "INSERT INTO Candidat (utilisateur_id, nom, prenom, adress, linkdin) 
                             VALUES (:utilisateur_id, :nom, :prenom, :adress , :linkdin)";
-    
+
         $stmtUtilisateur = $this->conn->prepare($queryUtilisateur);
         $stmtUtilisateur->bindParam(':email', $email);
         $stmtUtilisateur->bindParam(':password', $hashedPassword = password_hash($password, PASSWORD_BCRYPT));
@@ -39,29 +38,29 @@ class UserModel{
         $stmtCandidat->bindParam(':linkdin', $linkdin);
         $stmtCandidat->execute();
 
-        $queryFindUser = "SELECT Utilisateur.id, Utilisateur.email, Utilisateur.password, 
-                        Role.id as role_id, Role.title as `role`,
-                        Candidat.nom, Candidat.prenom, Candidat.adress, Candidat.linkdin
-                        FROM Utilisateur
-                        JOIN Role ON Role.id = Utilisateur.role_id
-                        JOIN Candidat ON Candidat.utilisateur_id = Utilisateur.id
-                        WHERE Utilisateur.id = :utilisateur_id";
+        // $queryFindUser = "SELECT Utilisateur.id, Utilisateur.email, Utilisateur.password, 
+        //                 Role.id as role_id, Role.title as `role`,
+        //                 Candidat.nom, Candidat.prenom, Candidat.adress, Candidat.linkdin
+        //                 FROM Utilisateur
+        //                 JOIN Role ON Role.id = Utilisateur.role_id
+        //                 JOIN Candidat ON Candidat.utilisateur_id = Utilisateur.id
+        //                 WHERE Utilisateur.id = :utilisateur_id";
 
-        $stmtFindUser = $this->conn->prepare($queryFindUser);
-        $stmtFindUser->bindParam(':utilisateur_id', $utilisateurId);
-        $stmtFindUser->execute();
+        // $stmtFindUser = $this->conn->prepare($queryFindUser);
+        // $stmtFindUser->bindParam(':utilisateur_id', $utilisateurId);
+        // $stmtFindUser->execute();
         
-        $row = $stmtFindUser->fetch(PDO::FETCH_ASSOC);
+        // $row = $stmtFindUser->fetch(PDO::FETCH_ASSOC);
 
-        $role = new Role($row['role_id'], $row['role']);
-        $user = new Utilisateur($row['id'], $row['email'], $row['password'], $role);
-        $Candidat = new Candidat(
-            $row['nom'],
-            $row['prenom'],
-            $row['adress'],
-            $row['linkdin'],
-            $user
-        );
+        // $role = new Role($row['role_id'], $row['role']);
+        // $user = new Utilisateur($row['id'], $row['email'], $row['password'], $role);
+        // $Candidat = new Candidat(
+        //     $row['nom'],
+        //     $row['prenom'],
+        //     $row['adress'],
+        //     $row['linkdin'],
+        //     $user
+        // );
     } 
 
 

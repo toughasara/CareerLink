@@ -16,7 +16,7 @@ class AuthController{
     }
 
     public function Registre_recruteur($nom_entreprise, $pay, $ville, $email, $password){
-        $user = $this->userModel->saveInfoOfRecruteur($nom_entreprise, $pay, $ville, $email, $password);
+        $this->userModel->saveInfoOfRecruteur($nom_entreprise, $pay, $ville, $email, $password);
     }
 
     public function Registre_condidat($nom, $prenom, $email, $password, $adress, $linkdin){

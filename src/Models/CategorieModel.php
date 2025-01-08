@@ -44,11 +44,28 @@ class CategorieModel{
 
         $stmtcategorie->execute();
     }
-    
+
     // supprimer categorie
     public function supprimerCayegorie($id){
         $query = "DELETE FROM Categorie WHERE id = $id";
         $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+    }
+
+    // modifier categorie
+    public function updateCategorie($categorie){
+        $id = $categorie->getId();
+        $name = $categorie->getNom();
+        $description = $categorie->getDescription();
+
+        $query = "UPDATE Categorie 
+                SET nom = :name , description = :description
+                WHERE id = :id";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':id', $id);
         $stmt->execute();
     }
 }

@@ -11,23 +11,17 @@
         $category_id = $_GET['id'];
         $categorie = $categorieController->trouvercategorie($category_id);
     }
-    var_dump($category_id);
-        exit;
     if(isset($_POST["submit"])){
         
         // var_dump($category_id);
         // exit;
-        if(empty($_POST["name"]) && empty($_POST["description"]))
-        {
-            echo "Le nom ou la description est vide";
-        }
-        else{
+
             $name = $_POST["name"];
             $description = $_POST["description"];
             $categorieController->updateCategorie($category_id, $name , $description);
             header("Location: categories.php");
             exit;
-        }
+        
     }
 ?>
 <!DOCTYPE html>
@@ -51,16 +45,16 @@
     <div id="sidebar" class="p-3">
         <h3 class="text-white mb-4 px-2">CareerLink</h3>
         <nav class="nav flex-column">
-            <a href="statistique.php" class="nav-link">
+            <a href="../statistique.php" class="nav-link">
                 <i class="bi bi-graph-up"></i> Statistiques
             </a>
-            <a href="offremploie.php" class="nav-link">
+            <a href="../offremploie.php" class="nav-link">
                 <i class="bi bi-briefcase"></i> Offres d'emploi
             </a>
-            <a href="Categorie/categories.php" class="nav-link active">
+            <a href="../Categorie/categories.php" class="nav-link active">
                 <i class="bi bi-grid"></i> Catégories
             </a>
-            <a href="Tag/tags.php" class="nav-link">
+            <a href="../Tag/tags.php" class="nav-link">
                 <i class="bi bi-tags"></i> Tags
             </a>
         </nav>
@@ -91,19 +85,19 @@
                             <form id="addCategoryForm" action="" method="POST">
                                 <div class="mb-3">
                                     <label for="categoryName" class="form-label">Nom de la catégorie</label>
-                                    <input value="<?= $categorie['nom'] ?>" type="text" class="form-control" id="categoryName" required>
+                                    <input value="<?= $categorie['nom'] ?>" type="text" name="name" class="form-control" id="categoryName" required>
                                     <input hidden value="submit" type="password" class="form-control" name="submit">
                                 </div>
                                 <div class="mb-3">
                                     <label for="categoryDescription" class="form-label">Description</label>
-                                    <textarea class="form-control" id="categoryDescription" rows="3"><?= $categorie['description'] ?></textarea>
+                                    <textarea name="description" class="form-control" id="categoryDescription" rows="3"><?= $categorie['description'] ?></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="categories.php" class="btn btn-secondary">Annuler</a>
+                                    <button type="submit" class="btn btn-primary">Modifier</button>
                                 </div>
                             </form>
                     <?php endif; ?>
-                </div>
-                <div class="modal-footer">
-                    <a href="categories.php" class="btn btn-secondary">Annuler</a>
-                    <button type="submit" class="btn btn-primary">Modifier</button>
                 </div>
             </div>
         </div>
