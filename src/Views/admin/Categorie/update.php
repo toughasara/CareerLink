@@ -1,3 +1,35 @@
+<?php
+    session_start();
+    require_once("../../../../vendor/autoload.php");
+    use App\Controllers\CategorieController;
+    
+    $categorieController = new CategorieController();
+
+    $categories = $categorieController->getCategories();
+
+    if (isset($_GET['id'])) {
+        $category_id = $_GET['id'];
+        $categorie = $categorieController->trouvercategorie($category_id);
+    }
+    var_dump($category_id);
+        exit;
+    if(isset($_POST["submit"])){
+        
+        // var_dump($category_id);
+        // exit;
+        if(empty($_POST["name"]) && empty($_POST["description"]))
+        {
+            echo "Le nom ou la description est vide";
+        }
+        else{
+            $name = $_POST["name"];
+            $description = $_POST["description"];
+            $categorieController->updateCategorie($category_id, $name , $description);
+            header("Location: categories.php");
+            exit;
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -55,20 +87,23 @@
                     <h5 class="modal-title">Ajouter une catégorie</h5>
                 </div>
                 <div class="modal-body">
-                    <form id="addCategoryForm">
-                        <div class="mb-3">
-                            <label for="categoryName" class="form-label">Nom de la catégorie</label>
-                            <input type="text" class="form-control" id="categoryName" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="categoryDescription" class="form-label">Description</label>
-                            <textarea class="form-control" id="categoryDescription" rows="3"></textarea>
-                        </div>
-                    </form>
+                    <?php if ($categorie): ?>
+                            <form id="addCategoryForm" action="" method="POST">
+                                <div class="mb-3">
+                                    <label for="categoryName" class="form-label">Nom de la catégorie</label>
+                                    <input value="<?= $categorie['nom'] ?>" type="text" class="form-control" id="categoryName" required>
+                                    <input hidden value="submit" type="password" class="form-control" name="submit">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="categoryDescription" class="form-label">Description</label>
+                                    <textarea class="form-control" id="categoryDescription" rows="3"><?= $categorie['description'] ?></textarea>
+                                </div>
+                            </form>
+                    <?php endif; ?>
                 </div>
                 <div class="modal-footer">
-                    <a href="categories.html" class="btn btn-secondary">Annuler</a>
-                    <a href="categories.html" class="btn btn-primary">Ajouter</a>
+                    <a href="categories.php" class="btn btn-secondary">Annuler</a>
+                    <button type="submit" class="btn btn-primary">Modifier</button>
                 </div>
             </div>
         </div>

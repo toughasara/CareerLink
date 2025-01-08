@@ -7,11 +7,14 @@ class Categorie {
     private $nom;
     private $description;
     
-    
-    public function __construct($id, $nom, $description) {
+    public function __construct($id=null, $nom, $description) {
             $this->id = $id;
             $this->nom = $nom;
             $this->description = $description;
+    }
+
+    public function getId(){
+        return $this->id;
     }
 
     public function getNom(){
@@ -20,6 +23,14 @@ class Categorie {
 
     public function getDescription(){
         return $this->description;
+    }
+
+    public function setNom($nom) {
+        $this->nom = $nom;
+    }
+
+    public function setDescription($description) {
+        $this->description = $description;
     }
     
 }

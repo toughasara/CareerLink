@@ -1,8 +1,12 @@
 <?php
-    require_once("../../../vendor/autoload.php");
-    use App\Controllers\Auth\AuthController;
+    session_start();
+
+    require_once("../../../../vendor/autoload.php");
+    use App\Controllers\CategorieController;
+
+    $categorieController = new CategorieController();
     
-    if($_SERVER["REQUEST_METHOD"] == "POST")
+    if(isset($_POST["submit"]))
     {
         if(empty($_POST["name"]) && empty($_POST["description"]))
         {
@@ -11,9 +15,11 @@
         else{
             $name = $_POST["name"];
             $description = $_POST["description"];
-    
-            $userModel = new UserModel();
-            $userModel->savecategorie($name, $description);
+
+            $categorieController->addcategorie($name, $description);
+
+            header("Location: categories.php");
+            exit;
         }
     }
 ?>
@@ -76,16 +82,17 @@
                 <div class="modal-body">
                     <form id="addCategoryForm" action="" method="POST">
                         <div class="mb-3">
-                            <label for="categoryName" class="form-label">Nom de la catégorie</label>
-                            <input type="text" class="form-control" name="name" id="categoryName" required>
+                            <label for="name" class="form-label">Nom de la catégorie</label>
+                            <input type="text" class="form-control" name="name" id="name" required>
                         </div>
                         <div class="mb-3">
-                            <label for="categoryDescription" class="form-label">Description</label>
-                            <textarea class="form-control" name="description" id="categoryDescription" rows="3"></textarea>
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" name="description" id="description" rows="3"></textarea>
                         </div>
+                        <input hidden type="password" class="form-control" name="submit" value="submit">
                         <div class="modal-footer">
                             <a type="submit" href="categories.html" class="btn btn-secondary">Annuler</a>
-                            <a href="categories.html" class="btn btn-primary">Ajouter</a>
+                            <button type="submit" name="submit" class="btn btn-primary">Ajouter</button>
                         </div>
                     </form>
                 </div>
@@ -94,8 +101,6 @@
     </div>
 
     <!-- js -->
-    <!-- <script src="../assests/js/dashbord.js"></script> -->
-    <!-- <script src="../assests/js/catrgories.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

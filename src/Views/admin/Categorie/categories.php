@@ -1,3 +1,20 @@
+<?php
+
+    session_start();
+    require_once("../../../../vendor/autoload.php");
+    use App\Controllers\CategorieController;
+
+    $categorieController = new CategorieController();
+
+    $categories = $categorieController->getCategories();
+
+    if (isset($_GET['id'])) {
+        $category_id = $_GET['id'];
+        $categorieController->deleteCategoryById($category_id);
+        $categories = $categorieController->getCategories();
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -33,7 +50,6 @@
             </a>
         </nav>
     </div>
-
     <!-- Main Content -->
     <div id="content">
         <!-- Header -->
@@ -52,7 +68,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h2>Liste des catégories</h2>
-                        <a href="update.html" class="add-btn">
+                        <a href="ajout.php" class="add-btn">
                             <i class="bi bi-plus-lg me-2"></i> Ajouter une catégorie
                         </a>
                     </div>
@@ -66,20 +82,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                    while($row = $result->fetch_assoc()){
-                                        echo '
+                            <?php if ($categories): ?>
+                                    <?php foreach ($categories as $category): ?>
                                         <tr>
-                                            <td>' . $row['name'] . '</td>
-                                            <td>' . $row['description'] . '</td>
+                                        <input type="hidden" name="id" value="<?= $category['id'] ?>">
+                                            <?php echo '<td>' . $category['nom'] . '</td>' ?>
+                                            <td>28</td>
                                             <td>
-                                                <a class="action-btn edit-btn me-2" href="update.html" title="Modifier"><i class="bi bi-pencil"></i></a>
-                                                <a class="action-btn delete-btn" href="update.html" title="Supprimer"><i class="bi bi-trash"></i></a>
+                                                <a href="update.php?id=<?php echo $category['id']; ?>" class="action-btn edit-btn me-2" title="Modifier"><i class="bi bi-pencil"></i></a>
+                                                <a href="categories.php?id=<?php echo $category['id']; ?>" class="action-btn delete-btn" title="Supprimer"><i class="bi bi-trash"></i></a>
                                             </td>
                                         </tr>
-                                        ';
-                                    }
-                                ?>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -89,8 +104,8 @@
     </div>
 
     <!-- js -->
-    <script src="../assests/js/dashbord.js"></script>
-    <script src="../assests/js/catrgories.js"></script>
+    <!-- <script src="../../assests/js/dashbord.js"></script> -->
+    <!-- <script src="../assests/js/catrgories.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

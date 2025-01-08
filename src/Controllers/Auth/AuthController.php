@@ -16,19 +16,16 @@ class AuthController{
     }
 
     public function Registre_recruteur($nom_entreprise, $pay, $ville, $email, $password){
-        $userModel = new UserModel();
-        $user = $userModel->saveInfoOfRecruteur($nom_entreprise, $pay, $ville, $email, $password);
+        $user = $this->userModel->saveInfoOfRecruteur($nom_entreprise, $pay, $ville, $email, $password);
     }
 
     public function Registre_condidat($nom, $prenom, $email, $password, $adress, $linkdin){
-        $userModel = new UserModel();
-        $user = $userModel->saveInfoOfCondidat($nom, $prenom, $email, $password, $adress, $linkdin);
+        $user = $this->userModel->saveInfoOfCondidat($nom, $prenom, $email, $password, $adress, $linkdin);
     }
 
     public function login($email, $password){
 
-        $userModel = new UserModel();
-        $user = $userModel->findUserByEmailAndPassword($email, $password);
+        $user = $this->userModel->findUserByEmailAndPassword($email, $password);
 
         if($user == null){
             echo "user not found please check ...";

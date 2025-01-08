@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use App\Classes\Categorie;
@@ -12,38 +13,42 @@ class CategorieModel{
         $db = new Database();
         $this->conn = $db->connection();
     }
-
-    public function selectcategorie(){
-        $queryFindCategorie = "SELECT id, nom, 'description'
-                                FROM Categorie";
-
-        $stmtselectCategorie = $this->conn->prepare($querySelectCategorie);
-        $stmtselectCategorie->bindParam(':categorie_id', $categorieId);
+    // get categorie
+    public function trouvercategorie($id){
+        $queryFindCategorie = "SELECT * FROM Categorie where id = :id";
+        $stmtselectCategorie = $this->conn->prepare($queryFindCategorie);
+        $stmtselectCategorie->bindParam(':id', $id, \PDO::PARAM_INT);
         $stmtselectCategorie->execute();
+        $categorie = $stmtselectCategorie->fetch(\PDO::FETCH_ASSOC);
+        return $categorie;
     }
 
-    public function savecategorie($name, $description){
-        $queryCategorie = "INSERT INTO Categorie (nom, 'description') 
-                            VALUES (:nom, :'description')";
+    // get tout les categories
+    public function getAllCategories(){
+        $queryFindCategorie = "SELECT * FROM Categorie";
+        $stmtselectCategorie = $this->conn->prepare($queryFindCategorie);
+        $stmtselectCategorie->execute();
+        $categories = $stmtselectCategorie->fetchAll(\PDO::FETCH_ASSOC);
+        return $categories;
+    }
 
-        $categorieId = $this->conn->lastInsertId();
+    // savecategorie
+    public function savecategorie($name, $description){
+        $queryCategorie = "INSERT INTO Categorie (nom, description) 
+                            VALUES (:nom, :description)";
 
         $stmtcategorie = $this->conn->prepare($queryCategorie);
-        $stmtcategorie->bindParam(':categorie_id', $categorieId);
-        $stmtcategorie->bindParam(':nom', $nom);
+
+        $stmtcategorie->bindParam(':nom', $name);
         $stmtcategorie->bindParam(':description', $description);
+
         $stmtcategorie->execute();
-
-        $queryFindCategorie = "SELECT id, nom, 'description'
-                                FROM Categorie
-                                WHERE id = :categorie_id";
-
-        $stmtFindCategorie = $this->conn->prepare($queryFindCategorie);
-        $stmtFindCategorie->bindParam(':categorie_id', $categorieId);
-        $stmtFindCategorie->execute();
-        
-        $row = $stmtFindCategorie->fetch(PDO::FETCH_ASSOC);
-
-        $role = new Categorie($row['id'], $row['nom'], $row['description']);
+    }
+    
+    // supprimer categorie
+    public function supprimerCayegorie($id){
+        $query = "DELETE FROM Categorie WHERE id = $id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
     }
 }
