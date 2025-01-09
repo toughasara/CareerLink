@@ -2,7 +2,9 @@
 
 namespace App\Controllers\Auth;
 
-use App\Classes\User;
+use App\Classes\Recruteur;
+use App\Classes\Utilisateur;
+use App\Classes\Role;
 use App\Config\Database;
 use App\Models\UserModel;
 use PDO;
@@ -14,9 +16,11 @@ class AuthController{
     public function __construct()   {
         $this->userModel = new UserModel();
     }
-
     public function Registre_recruteur($nom_entreprise, $pay, $ville, $email, $password){
-        $this->userModel->saveInfoOfRecruteur($nom_entreprise, $pay, $ville, $email, $password);
+        $role = new Role("2", "Recruteur");
+        $utilisateur = new Utilisateur(null, $email, $password, $role);
+        $recruteur = new Recruteur($nom_entreprise, $pay, $ville, $utilisateur);
+        $this->userModel->saveInfoOfRecruteur($recruteur);
     }
 
     public function Registre_condidat($nom, $prenom, $email, $password, $adress, $linkdin){

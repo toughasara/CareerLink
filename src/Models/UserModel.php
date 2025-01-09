@@ -62,9 +62,21 @@ class UserModel{
         //     $user
         // );
     } 
+    
+    public function saveInfoOfRecruteur($recruteur) { 
+        $nom_entreprise = $recruteur->getNom_entreprise();
+        $pay = $recruteur->getPay();
+        $ville = $recruteur->getVille();
+        $utilisateur = $recruteur->getUtilisateur();
 
+        $id_user = $utilisateur->getId();
+        $email = $utilisateur->getEmail();
+        $password = $utilisateur->getPassword();
+        $role = $utilisateur->getRole();
 
-    public function saveInfoOfRecruteur($nom_entreprise, $pay, $ville, $email, $password) {        
+        $id_role = $role->getId();
+        $title = $role->getTitle();
+
         $queryUtilisateur = "INSERT INTO Utilisateur (email, password, role_id) 
                             VALUES (:email, :password, :role_id)";
 
@@ -74,7 +86,7 @@ class UserModel{
         $stmtUtilisateur = $this->conn->prepare($queryUtilisateur);
         $stmtUtilisateur->bindParam(':email', $email);
         $stmtUtilisateur->bindParam(':password', $hashedPassword = password_hash($password, PASSWORD_BCRYPT));
-        $stmtUtilisateur->bindParam(':role_id', $roleId = 2);
+        $stmtUtilisateur->bindParam(':role_id', $id_role);
         $stmtUtilisateur->execute();
     
         $utilisateurId = $this->conn->lastInsertId();
@@ -85,30 +97,6 @@ class UserModel{
         $stmtRecruteur->bindParam(':pay', $pay);
         $stmtRecruteur->bindParam(':ville', $ville);
         $stmtRecruteur->execute();
-
-        $queryFindUser = "SELECT Utilisateur.id, Utilisateur.email, Utilisateur.password, 
-                        Role.id as role_id, Role.title as `role`,
-                        Recruteur.nom_entreprise, Recruteur.pay, Recruteur.ville, Recruteur.codepostal
-                        FROM Utilisateur
-                        JOIN Role ON Role.id = Utilisateur.role_id
-                        JOIN Recruteur ON Recruteur.utilisateur_id = Utilisateur.id
-                        WHERE Utilisateur.id = :utilisateur_id";
-
-        $stmtFindUser = $this->conn->prepare($queryFindUser);
-        $stmtFindUser->bindParam(':utilisateur_id', $utilisateurId);
-        $stmtFindUser->execute();
-        
-        $row = $stmtFindUser->fetch(PDO::FETCH_ASSOC);
-
-        $role = new Role($row['role_id'], $row['role']);
-        $user = new Utilisateur($row['id'], $row['email'], $row['password'], $role);
-        $recruteur = new Recruteur(
-            $row['nom_entreprise'],
-            $row['pay'],
-            $row['ville'],
-            $row['codepostal'],
-            $user
-        );
     } 
     
 

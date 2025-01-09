@@ -12,6 +12,8 @@ class Role {
             $this->title = $title;
     }
 
+    public function getId() { return $this->id; }
+
     public function getTitle(){
         return $this->title;
     }

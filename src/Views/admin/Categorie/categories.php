@@ -77,7 +77,7 @@
                             <thead>
                                 <tr>
                                     <th>Nom</th>
-                                    <th>Nombre d'offres</th>
+                                    <th>Description</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -87,7 +87,7 @@
                                         <tr>
                                         <input type="hidden" name="id" value="<?= $category->getId() ?>">
                                             <?php echo '<td>' . $category->getNom(). '</td>' ?>
-                                            <td>28</td>
+                                            <?php echo '<td>' . $category->getDescription(). '</td>' ?>
                                             <td>
                                                 <a href="update.php?id=<?php echo $category->getId(); ?>" class="action-btn edit-btn me-2" title="Modifier"><i class="bi bi-pencil"></i></a>
                                                 <a href="categories.php?id=<?php echo $category->getId(); ?>" class="action-btn delete-btn" title="Supprimer"><i class="bi bi-trash"></i></a>

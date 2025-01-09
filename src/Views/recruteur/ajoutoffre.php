@@ -1,3 +1,30 @@
+<?php
+    session_start();
+
+    require_once("../../../../vendor/autoload.php");
+    use App\Controllers\CategorieController;
+
+    $categorieController = new CategorieController();
+
+    $categories = $categorieController->getCategories();
+    
+    if(isset($_POST["submit"]))
+    {
+        if(empty($_POST["name"]) && empty($_POST["description"]))
+        {
+            echo "name or description is empty";
+        }
+        else{
+            $name = $_POST["name"];
+            $description = $_POST["description"];
+
+            $categorieController->addcategorie($name, $description);
+
+            header("Location: categories.php");
+            exit;
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

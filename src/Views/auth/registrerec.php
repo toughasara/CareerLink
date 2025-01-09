@@ -7,7 +7,6 @@ $authController = new AuthController();
 
 if(isset($_POST["submit"]))
 {
-
     if(empty($_POST["nom_entreprise"]) && empty($_POST["pay"]) && empty($_POST["ville"]) && empty($_POST["email"]) && empty($_POST["password"]))
     {
         echo "email or password is empty";
@@ -18,6 +17,11 @@ if(isset($_POST["submit"]))
         $ville = $_POST["ville"];
         $email = $_POST["email"];
         $password = $_POST["password"];
+
+        // var_dump($nom_entreprise);
+        // exit;
+
+        // $passwordHash = password_hash($password, PASSWORD_BCRYPT);
 
         $authController->Registre_recruteur($nom_entreprise, $pay, $ville, $email, $password);
 
@@ -55,14 +59,14 @@ if(isset($_POST["submit"]))
                 </a>
             </div>
 
-            <form id="registerForm">
+            <form id="registerForm" method="POST" action="">
 
                 <input type="text" class="form-control" name="nom_entreprise" placeholder="Nom de l'entreprise">
                 <input type="text" class="form-control" name="pay" placeholder="pay">
                 <input type="text" class="form-control" name="ville" placeholder="ville">
                 <input type="email" class="form-control" name="email" placeholder="Email">
                 <input type="password" class="form-control" name="password" placeholder="Mot de passe">
-                <!-- <input type="password" class="form-control" name="email" placeholder="Confirmer le mot de passe"> -->
+                <input hidden type="password" class="form-control" name="submit" value="submit">
 
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="terms">
@@ -70,8 +74,6 @@ if(isset($_POST["submit"]))
                         J'accepte les conditions d'utilisation et la politique de confidentialité
                     </label>
                 </div>
-
-                <input hidden type="password" class="form-control" name="submit" value="submit">
 
                 <button type="submit" name="submit" class="btn btn-primary">Créer mon compte</button>
             </form>
